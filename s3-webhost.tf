@@ -1,9 +1,9 @@
 resource "aws_s3_bucket" "s3-webhost" {
-  bucket = local.s3-webhost-bucket-name
+  bucket = local.s3-webhost-bucket-visi-pro
 }
 
 resource "aws_s3_bucket_acl" "s3-webhost-acl" {
-  bucket = aws_s3_bucket.s3-webhost.bucket
+  bucket = aws_s3_bucket.s3-webhost.bucket-visi-pro
   acl    = "public-read"
 }
 
