@@ -17,7 +17,7 @@ resource "aws_vpc" "visi-pro" {
   cidr_block = "10.0.0.0/16"
 }
 
-provider "aws" {
+provider "" {
     access_key = "${var.aws_access_key}"
     secret_key = "${var.aws_secret_key}"
     region = "${var.aws_region}"
