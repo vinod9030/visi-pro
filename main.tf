@@ -13,7 +13,7 @@ provider "aws" {
 }
 
 # Create a VPC
-resource "aws_vpc" "visi-pro" {
+resource "aws_vpc" terraform-aws-testing" {
   cidr_block = "10.0.0.0/16"
 }
 
@@ -28,37 +28,37 @@ resource "aws_vpc" "default" {
 resource "aws_internet_gateway" "default" {
     vpc_id = "${aws_vpc.default.id}"
 	tags = {
-        Name = "${var.IGW_name}"
+        Name = "${var.IGW_terraform-aws-igw}"
     }
 }
 
 resource "aws_subnet" "subnet1-public" {
     vpc_id = "${aws_vpc.default.id}"
-    cidr_block = "${var.public_subnet1_cidr}"
+    cidr_block = "${var.public_subnet1_10.1.1.0/24}"
     availability_zone = "us-east-1a"
 
     tags = {
-        Name = "${var.public_subnet1_name}"
+        Name = "${var.public_subnet1_Terraform_Public_Subnet1-testing}"
     }
 }
 
 resource "aws_subnet" "subnet2-public" {
     vpc_id = "${aws_vpc.default.id}"
-    cidr_block = "${var.public_subnet2_cidr}"
+    cidr_block = "${var.public_subnet2_10.1.1.0/24}"
     availability_zone = "us-east-1b"
 
     tags = {
-        Name = "${var.public_subnet2_name}"
+        Name = "${var.public_subnet2_Terraform_Public_Subnet2-testing}"
     }
 }
 
 resource "aws_subnet" "subnet3-public" {
     vpc_id = "${aws_vpc.default.id}"
-    cidr_block = "${var.public_subnet3_cidr}"
+    cidr_block = "${var.public_subnet3_10.1.1.0/24}"
     availability_zone = "us-east-1c"
 
     tags = {
-        Name = "${var.public_subnet3_name}"
+        Name = "${var.public_subnet3_Terraform_Public_Subnet3-testing}"
     }
 	
 }
@@ -104,7 +104,7 @@ resource "aws_security_group" "allow_all" {
 
 #data "aws_ami" "my_ami" {
 #      most_recent      = true
-#      #name_regex       = "^mavrick"
+#      #name_regex       = "vinod"
 #      owners           = ["444984551434"]
 #}
 
@@ -121,7 +121,7 @@ resource "aws_instance" "web-1" {
     tags = {
         Name = "Server-1"
         Env = "Prod"
-        Owner = "Sree"
+        Owner = "vinod"
     }
 }
 
