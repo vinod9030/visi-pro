@@ -8,6 +8,8 @@ terraform {
 }
 
 # Configure the AWS Provider
+ 
+
 provider "aws" {
     access_key = "${var.aws_access_key}"
     secret_key = "${var.aws_secret_key}"
@@ -101,14 +103,14 @@ resource "aws_security_group" "allow_all" {
 
 #data "aws_ami" "my_ami" {
 #      most_recent      = true
-#      #name_regex       = "vinod"
+#      #name_regex       = "^mavrick"
 #      owners           = ["444984551434"]
 #}
 
 
 resource "aws_instance" "web-1" {
     #ami = "${data.aws_ami.my_ami.id}"
-    ami = "ami-08c40ec9ead489470"
+    ami = "ami-0d857ff0f5fc4e03b"
     availability_zone = "us-east-1a"
     instance_type = "t2.micro"
     key_name = "LaptopKey"
