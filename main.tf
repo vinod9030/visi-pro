@@ -6,13 +6,6 @@ terraform {
     }
   }
 }
-  cloud {
-    organization = "visi-pro"
-
-    workspaces {
-      name = "visi-pro"
-    }
-  }
 
 
 
