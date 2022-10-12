@@ -4,10 +4,8 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 4.0"
     }
-    random = {
-      source = "hashicorp/random"
-    }
   }
+}
   cloud {
     organization = "visi-pro"
 
@@ -15,7 +13,7 @@ terraform {
       name = "visi-pro"
     }
   }
-}
+
 
 
 # Configure the AWS Provider
