@@ -111,11 +111,11 @@ resource "aws_security_group" "allow_all" {
 }
 
 data "aws_ami" "my_ami" {
-      most_recent      = true
-      name_regex       = "vinod"
-      owners           = ["444984551434"]
-}
+      #most_recent      = true
+      #name_regex       = "vinod"
+      #owners           = ["444984551434"]
 
+}
 
 resource "aws_instance" "web-1" {
     #ami = "${data.aws_ami.my_ami.id}"
