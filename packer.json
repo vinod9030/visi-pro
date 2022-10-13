@@ -1,8 +1,8 @@
 {
     "_comment" : "Create a AWS AMI ith AMZ Linux 2018 with Java and Tomcat",
     "variables": {
-      "aws_access_key": "",
-      "aws_secret_key": ""
+      "aws_access_key": "APKATD7PANJR3GE2XQ2U",
+      "aws_secret_key": "7k7BcYF4aDTorCxp7q/3hOHomi0PEmH4wKR5boCj"
     },
     "builders": [{
       "type": "amazon-ebs",
