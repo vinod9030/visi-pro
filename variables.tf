@@ -1,6 +1,6 @@
-variable "aws_access_key:AKIATD7PANJR7U5PA3WD"{}
-variable "aws_secret_key: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"{}
-variable "aws_region=us-east-1"{}
+variable "aws_access_key"{}
+variable "aws_secret_key"{}
+variable "aws_region"{}
 variable "amis" {
     description = "AMIs by region"
     default = {
@@ -10,19 +10,19 @@ variable "amis" {
 		us-west-2 = "ami-f2d3638a" # ubuntu 14.04 LTS
     }
 }
-variable "vpc_cidr=10.1.0.0/16"{}
-variable "vpc_name=terraform-aws-testing"{}
-variable "IGW_name=terraform-aws-igw"{}
-variable "key_name=visi-pro"{}
-variable "public_subnet1_cidr:10.1.1.0/24"{}
-variable "public_subnet2_cidr:10.1.2.0/24"{}
-variable "public_subnet3_cidr:10.1.3.0/24"{}
-variable "private_subnet_cidr:10.1.20.0/24"{}
-variable "public_subnet1_name:Terraform_Public_Subnet1-testing"{}
-variable "public_subnet2_name=:Terraform_Public_Subnet2-testing"{}
-variable "public_subnet3_name:Terraform_Public_Subnet3-testing"{}
-variable "private_subnet_name:Terraform_Public_Subnet-testing"{}
-variable "Main_Routing_Table=:Terraform_Main_table-testing"{}
+variable "vpc_cidr"{}
+variable "vpc_name"{}
+variable "IGW_name"{}
+variable "key_name"{}
+variable "public_subnet1_cidr"{}
+variable "public_subnet2_cidr"{}
+variable "public_subnet3_cidr"{}
+variable "private_subnet_cidr"{}
+variable "public_subnet1_name"{}
+variable "public_subnet2_name"{}
+variable "public_subnet3_name"{}
+variable "private_subnet_name"{}
+variable "Main_Routing_Table"{}
 variable "azs" {
   description = "Run the EC2 Instances in these Availability Zones"
   
