@@ -22,14 +22,14 @@ resource "aws_vpc" "default" {
     cidr_block = "${var.vpc_cidr}"
     enable_dns_hostnames = true
     tags = {
-        Name = "${var.vpc_name}"
+        Name = "${var.vpc_visi-pro}"
     }
 }
 
 resource "aws_internet_gateway" "default" {
-    vpc_id = "${aws_vpc.default.id}"
+    vpc_id = "${aws_vpc.default.vpc-0e4ba9e87082d56aa}"
 	tags = {
-        Name = "${var.IGW_name}"
+        Name = "${var.IGW_visi-pro-igw}"
     }
 }
 
@@ -44,33 +44,33 @@ resource "aws_subnet" "subnet1-public" {
 }
 
 resource "aws_subnet" "subnet2-public" {
-    vpc_id = "${aws_vpc.default.id}"
+    vpc_id = "${aws_vpc.default.vpc-0e4ba9e87082d56aa}"
     cidr_block = "${var.public_subnet2_cidr}"
     availability_zone = "us-east-1b"
 
     tags = {
-        Name = "${var.public_subnet2_name}"
+        Name = "${var.public_subnet2_visi-pro/Public}"
     }
 }
 
 resource "aws_subnet" "subnet3-public" {
-    vpc_id = "${aws_vpc.default.id}"
+    vpc_id = "${aws_vpc.default.vpc-0e4ba9e87082d56aa}"
     cidr_block = "${var.public_subnet3_cidr}"
     availability_zone = "us-east-1c"
 
     tags = {
-        Name = "${var.public_subnet3_name}"
+        Name = "${var.public_subnet3_visi-pro/Public}"
     }
 	
 }
 
 
 resource "aws_route_table" "terraform-public" {
-    vpc_id = "${aws_vpc.default.id}"
+    vpc_id = "${aws_vpc.default.vpc-0e4ba9e87082d56aa}"
 
     route {
-        cidr_block = "0.0.0.0/0"
-        gateway_id = "${aws_internet_gateway.default.id}"
+        cidr_block = "10.0.0.0/16"
+        gateway_id = "${aws_internet_gateway.default.igw-0d60856dcdbe4bc5f}"
     }
 
     tags = {
@@ -79,27 +79,27 @@ resource "aws_route_table" "terraform-public" {
 }
 
 resource "aws_route_table_association" "terraform-public" {
-    subnet_id = "${aws_subnet.subnet1-public.id}"
-    route_table_id = "${aws_route_table.terraform-public.id}"
+    subnet_id = "${aws_subnet.subnet1-public.subnet-04ed3aeb3e95cdd42}"
+    route_table_id = "${aws_route_table.terraform-public.rtb-03a0af9d32807b10f}"
 }
 
 resource "aws_security_group" "allow_all" {
   name        = "allow_all"
   description = "Allow all inbound traffic"
-  vpc_id      = "${aws_vpc.default.id}"
+  vpc_id      = "${aws_vpc.default.vpc-0e4ba9e87082d56aa}"
 
   ingress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["10.0.0.0/16"]
   }
 
   egress {
     from_port       = 0
     to_port         = 0
     protocol        = "-1"
-    cidr_blocks     = ["0.0.0.0/0"]
+    cidr_blocks     = ["10.0.0.0/16"]
     }
 }
 
@@ -116,8 +116,8 @@ resource "aws_instance" "web-1" {
     availability_zone = "us-east-1a"
     instance_type = "t2.micro"
     key_name = "visi-pro"
-    subnet_id = "${aws_subnet.subnet1-public.id}"
-    vpc_security_group_ids = ["${aws_security_group.allow_all.id}"]
+    subnet_id = "${aws_subnet.subnet1-public.subnet-04ed3aeb3e95cdd42}"
+    vpc_security_group_ids = ["${aws_security_group.allow_all.sg-0cfcad0bc79947e74}"]
     associate_public_ip_address = true	
     tags = {
         Name = "Server-1"
