@@ -22,24 +22,24 @@ resource "aws_vpc" "default" {
     cidr_block = "${var.vpc_cidr}"
     enable_dns_hostnames = true
     tags = {
-        Name = "${var.vpc_visi-pro}"
+        Name = "${var.vpc_name}"
     }
 }
 
 resource "aws_internet_gateway" "default" {
     vpc_id = "${aws_vpc.default.vpc-0e4ba9e87082d56aa}"
 	tags = {
-        Name = "${var.IGW_visi-pro-igw}"
+        Name = "${var.IGW_name}"
     }
 }
 
 resource "aws_subnet" "subnet1-public" {
-    vpc_id = "${aws_vpc.default.id}"
+    vpc_id = "${aws_vpc.default.vpc-0e4ba9e87082d56aa}"
     cidr_block = "${var.public_subnet1_cidr}"
     availability_zone = "us-east-1a"
 
     tags = {
-        Name = "${var.public_subnet1_name}"
+        Name = "${var.public_subnet1_visi-pro/Public}"
     }
 }
 
@@ -54,7 +54,7 @@ resource "aws_subnet" "subnet2-public" {
 }
 
 resource "aws_subnet" "subnet3-public" {
-    vpc_id = "${aws_vpc.default.vpc-0e4ba9e87082d56aa}"
+    vpc_id = "${aws_vpc.default.id}"
     cidr_block = "${var.public_subnet3_cidr}"
     availability_zone = "us-east-1c"
 
@@ -69,7 +69,7 @@ resource "aws_route_table" "terraform-public" {
     vpc_id = "${aws_vpc.default.vpc-0e4ba9e87082d56aa}"
 
     route {
-        cidr_block = "10.0.0.0/16"
+        cidr_block = "10.0.0.0/24"
         gateway_id = "${aws_internet_gateway.default.igw-0d60856dcdbe4bc5f}"
     }
 
@@ -92,14 +92,14 @@ resource "aws_security_group" "allow_all" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["10.0.0.0/16"]
+    cidr_blocks = ["10.0.0.0/24"]
   }
 
   egress {
     from_port       = 0
     to_port         = 0
     protocol        = "-1"
-    cidr_blocks     = ["10.0.0.0/16"]
+    cidr_blocks     = ["10.0.0.0/24"]
     }
 }
 
@@ -117,7 +117,7 @@ resource "aws_instance" "web-1" {
     instance_type = "t2.micro"
     key_name = "visi-pro"
     subnet_id = "${aws_subnet.subnet1-public.subnet-04ed3aeb3e95cdd42}"
-    vpc_security_group_ids = ["${aws_security_group.allow_all.sg-0cfcad0bc79947e74}"]
+    vpc_security_group_ids = ["${aws_security_group.allow_all.id}"]
     associate_public_ip_address = true	
     tags = {
         Name = "Server-1"
