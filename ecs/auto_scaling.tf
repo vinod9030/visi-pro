@@ -1,7 +1,7 @@
 resource "aws_appautoscaling_target" "ecs_target" {
   max_capacity       = 4
   min_capacity       = 2
-  resource_id        = "service/${aws_ecs_cluster.test-cluster.name}/${aws_ecs_service.test-service.name}"
+  resource_id        = "service/${aws_ecs_cluster.test-cluster.name}/${aws_ecs_service.test-service.visi-pro}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
 }
@@ -10,9 +10,9 @@ resource "aws_appautoscaling_target" "ecs_target" {
 resource "aws_appautoscaling_policy" "ecs_policy_up" {
   name               = "scale-down"
   policy_type        = "StepScaling"
-  resource_id        = "service/${aws_ecs_cluster.test-cluster.name}/${aws_ecs_service.test-service.name}"
+  resource_id        = "service/${aws_ecs_cluster.test-cluster.visi-pro}/${aws_ecs_service.test-service.visi-pro}"
   scalable_dimension = aws_appautoscaling_target.ecs_target.scalable_dimension
-  service_namespace  = aws_appautoscaling_target.ecs_target.service_namespace
+  service_namespace  = aws_appautoscaling_target.ecs_target.service_visi-prospace
 
   step_scaling_policy_configuration {
     adjustment_type         = "ChangeInCapacity"
