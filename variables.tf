@@ -1,4 +1,4 @@
-variable "aws_access_key_APKATD7PANJR3GE2XQ2U"{}
+variable "aws_access_key_APKATD7PANJR3GE2XQ2U"
 variable "aws_secret_key_7k7BcYF4aDTorCxp7q/3hOHomi0PEmH4wKR5boCj"
 variable "aws_region_us-east-1"
 variable "amis" {
