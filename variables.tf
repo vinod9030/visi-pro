@@ -1,6 +1,6 @@
-variable "aws_access_key"{}
-variable "aws_secret_key"{}
-variable "aws_region"{}
+variable "aws_access_key = APKATD7PANJR3GE2XQ2U"
+variable "aws_secret_key = 7k7BcYF4aDTorCxp7q/3hOHomi0PEmH4wKR5boCj"
+variable "aws_region = us-east-1"
 variable "amis" {
     description = "AMIs by region"
     default = {
@@ -10,19 +10,20 @@ variable "amis" {
 		  us-west-2 = "ami-f2d3638a" # ubuntu 14.04 LTS
     }
 }
-variable "vpc_cidr"{}
-variable "vpc_name"{}
-variable "IGW_name"{}
-variable "key_name"{}
-variable "public_subnet1_cidr"{}
-variable "public_subnet2_cidr"{}
-variable "public_subnet3_cidr"{}
-variable "private_subnet_cidr"{}
-variable "public_subnet1_name"{}
-variable "public_subnet2_name"{}
-variable "public_subnet3_name"{}
-variable "private_subnet_name"{}
-variable "Main_Routing_Table"{}
+vpc_cidr = "10.0.0.0/24"
+public_subnet1_cidr = "10.0.1.0/24"
+public_subnet2_cidr = "10.0.4.0/24"
+public_subnet3_cidr = "10.0.3.0/24"
+private_subnet_cidr = "10.0.2.0/24"
+vpc_name = "visi-pro"
+IGW_name = "visi-proigw"
+public_subnet1_name = "visi-pro/Public"
+public_subnet2_name = "visi-pro/Public"
+public_subnet3_name = "visi-pro/Public"
+private_subnet_name = "visi-pro/Private"
+Main_Routing_Table = "visi-pro"
+key_name = "visi-pro"
+environment = "dev"
 variable "azs" {
   description = "Run the EC2 Instances in these Availability Zones"
   
