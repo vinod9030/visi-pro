@@ -11,13 +11,13 @@ terraform {
 
 # Configure the AWS Provider
  
-{
+
 provider "aws" 
     access_key = "{APKATD7PANJR3GE2XQ2U}"
     secret_key = "{7k7BcYF4aDTorCxp7q/3hOHomi0PEmH4wKR5boCj}"
     region = "{us-east-1}"
+    }
 }
-
 
 resource "aws_vpc" "default" {
     cidr_block ="172.31.0.0/20"
