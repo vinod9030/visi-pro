@@ -1,6 +1,9 @@
-variable "aws_access_key=APKATD7PANJR3GE2XQ2U" {}
-variable "aws_secret_key=7k7BcYF4aDTorCxp7q/3hOHomi0PEmH4wKR5boCj" {}
-variable "aws_region=us-east-1" {}
+
+variable "aws" {
+access_key = "APKATD7PANJR3GE2XQ2U"
+aws_secret_key = "7k7BcYF4aDTorCxp7q/3hOHomi0PEmH4wKR5boCj" 
+aws_region = "us-east-1" 
+}
 variable "amis" {
     description = "AMIs by region"
     default = {
