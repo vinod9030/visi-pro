@@ -2,8 +2,8 @@
 
 resource "aws_alb" "alb" {
   name           = "visi-proapp-load-balancer"
-  subnets        = aws_subnet.public.subnet-07962cdd4b72efc3c
-  security_groups = [aws_security_group.alb-sg.sg-0cfcad0bc79947e74]
+  subnets        = aws_subnet.public.subnet-06d9db5a1de59d5c7
+  security_groups = [aws_security_group.alb-sg.sg-0551d0f7731151aa3]
 }
 
 resource "aws_alb_target_group" "myapp-tg" {
@@ -11,7 +11,7 @@ resource "aws_alb_target_group" "myapp-tg" {
   port        = 80
   protocol    = "HTTP"
   target_type = "ip"
-  vpc_id      = aws_vpc.visi-pro-vpc.vpc-0e4ba9e87082d56aa
+  vpc_id      = aws_vpc.visi-pro-vpc.vpc-0382f51c959645e99
 
   health_check {
     healthy_threshold   = 2
@@ -26,7 +26,7 @@ resource "aws_alb_target_group" "myapp-tg" {
 
 #redirecting all incomming traffic from ALB to the target group
 resource "aws_alb_listener" "testapp" {
-  load_balancer_arn = aws_alb.alb.id
+  load_balancer_arn = "arn:aws:elasticloadbalancing:us-east-1:214712740451:loadbalancer/app/visi-pro/d3b1a8885700f386"
   port              = var.app_port
   protocol          = "HTTP"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
