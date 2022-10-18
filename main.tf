@@ -19,7 +19,7 @@ provider "aws" {
 }
 
 resource "aws_vpc" "default" {
-    cidr_block ="${var.vpc_cidr}"
+    cidr_block ="{172.31.0.0/20}"
     enable_dns_hostnames = true
     tags = {
         Name = "{visi-pro}"
@@ -35,7 +35,7 @@ resource "aws_internet_gateway" "default" {
 
 resource "aws_subnet" "subnet1-public" {
     vpc_id = "{vpc-0382f51c959645e99}"
-    cidr_block = "${var.public_subnet1_cidr}"
+    cidr_block = "{172.31.80.0/20}"
     availability_zone = "us-east-1a"
 
     tags = {
@@ -45,7 +45,7 @@ resource "aws_subnet" "subnet1-public" {
 
 resource "aws_subnet" "subnet2-public" {
     vpc_id = "{vpc-0382f51c959645e99}"
-    cidr_block = "${var.public_subnet2_cidr}"
+    cidr_block = "{"172.31.32.0/20"}"
     availability_zone = "us-east-1b"
 
     tags = {
@@ -55,7 +55,7 @@ resource "aws_subnet" "subnet2-public" {
 
 resource "aws_subnet" "subnet3-public" {
     vpc_id = "{vpc-0382f51c959645e99}"
-    cidr_block = "${var.public_subnet3_cidr}"
+    cidr_block = "{"172.31.16.0/20"}"
     availability_zone = "us-east-1c"
 
     tags = {
@@ -69,7 +69,7 @@ resource "aws_route_table" "terraform-public" {
     vpc_id = "{vpc-0382f51c959645e99}"
 
     route {
-        cidr_block = "172.31.0.0/16"
+        cidr_block = "{"172.31.0.0/16"}"
         gateway_id = "{igw-0d99675bb66becd2c}"
     }
 
@@ -89,17 +89,17 @@ resource "aws_security_group" "allow_all" {
   vpc_id      = "{vpc-0382f51c959645e99}"
 
   ingress {
-    from_port   = 0
-    to_port     = 0
+    from_port   = "0"
+    to_port     = "0"
     protocol    = "-1"
-    cidr_blocks = ["172.31.0.0/16"]
+    cidr_blocks = "["172.31.0.0/16"]"
   }
 
   egress {
-    from_port       = 0
-    to_port         = 0
+    from_port       = "0"
+    to_port         = "0"
     protocol        = "-1"
-    cidr_blocks     = ["172.31.0.0/16"]
+    cidr_blocks     = "["172.31.0.0/16"]"
     }
 }
 
@@ -114,7 +114,7 @@ data "aws_ami" "my_ami" {
 
 
 resource "aws_instance" "web-1" {
-    #ami = "${data.aws_ami.my_ami.id}"
+    ami = "${data.aws_ami.my_ami.id}"
     ami = "ami-0d857ff0f5fc4e03b"
     availability_zone = "us-east-1a"
     instance_type = "t2.micro"
