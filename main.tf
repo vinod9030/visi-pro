@@ -114,7 +114,7 @@ data "aws_ami" "my_ami" {
 
 
 resource "aws_instance" "web-1" {
-    ami = "${data.aws_ami.my_ami.id}"
+    #ami = "${data.aws_ami.my_ami.id}"
     ami = "ami-0d857ff0f5fc4e03b"
     availability_zone = "us-east-1a"
     instance_type = "t2.micro"
