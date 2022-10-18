@@ -19,7 +19,7 @@ provider "aws" {
 }
 
 resource "aws_vpc" "default" {
-    cidr_block = "{10.0.0.0/24}"
+    cidr_block = "{default}"
     enable_dns_hostnames = true
     tags = {
         Name = "{visi-pro}"
@@ -35,7 +35,7 @@ resource "aws_internet_gateway" "default" {
 
 resource "aws_subnet" "subnet1-public" {
     vpc_id = "{vpc-0e4ba9e87082d56aa}"
-    cidr_block = "{10.0.1.0/24}"
+    cidr_block = "{subnet1-public}"
     availability_zone = "us-east-1a"
 
     tags = {
@@ -45,7 +45,7 @@ resource "aws_subnet" "subnet1-public" {
 
 resource "aws_subnet" "subnet2-public" {
     vpc_id = "{vpc-0e4ba9e87082d56aa}"
-    cidr_block = "{10.0.3.0/24}"
+    cidr_block = "{subnet2-public}"
     availability_zone = "us-east-1b"
 
     tags = {
@@ -55,7 +55,7 @@ resource "aws_subnet" "subnet2-public" {
 
 resource "aws_subnet" "subnet3-public" {
     vpc_id = "{vpc-0e4ba9e87082d56aa}"
-    cidr_block = "{10.0.4.0/24}"
+    cidr_block = "{subnet3-public}"
     availability_zone = "us-east-1c"
 
     tags = {
@@ -69,7 +69,7 @@ resource "aws_route_table" "terraform-public" {
     vpc_id = "{vpc-0e4ba9e87082d56aa}"
 
     route {
-        cidr_block = "10.0.0.0/24"
+        cidr_block = "terraform-public"
         gateway_id = "{igw-0d60856dcdbe4bc5f}"
     }
 
