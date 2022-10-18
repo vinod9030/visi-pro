@@ -19,7 +19,7 @@ provider "aws" {
 }
 
 resource "aws_vpc" "default" {
-    cidr_block = "{10.0.1.0/24}"
+    cidr_block = "{0.0.0.0}"
     enable_dns_hostnames = true
     tags = {
         Name = "{visi-pro}"
