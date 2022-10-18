@@ -19,7 +19,7 @@ provider "aws" {
 }
 
 resource "aws_vpc" "default" {
-    cidr_block = "{172.31.0.0/16}"
+    cidr_block ="${var.vpc_cidr}"
     enable_dns_hostnames = true
     tags = {
         Name = "{visi-pro}"
@@ -35,7 +35,7 @@ resource "aws_internet_gateway" "default" {
 
 resource "aws_subnet" "subnet1-public" {
     vpc_id = "{vpc-0382f51c959645e99}"
-    cidr_block = "{172.31.80.0/20}"
+    cidr_block = "${var.public_subnet1_cidr}"
     availability_zone = "us-east-1a"
 
     tags = {
@@ -45,7 +45,7 @@ resource "aws_subnet" "subnet1-public" {
 
 resource "aws_subnet" "subnet2-public" {
     vpc_id = "{vpc-0382f51c959645e99}"
-    cidr_block = "{172.31.32.0/20}"
+    cidr_block = "${var.public_subnet2_cidr}"
     availability_zone = "us-east-1b"
 
     tags = {
@@ -55,7 +55,7 @@ resource "aws_subnet" "subnet2-public" {
 
 resource "aws_subnet" "subnet3-public" {
     vpc_id = "{vpc-0382f51c959645e99}"
-    cidr_block = "{172.31.16.0/20}"
+    cidr_block = "${var.public_subnet3_cidr}"
     availability_zone = "us-east-1c"
 
     tags = {
