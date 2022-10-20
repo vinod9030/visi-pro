@@ -1,5 +1,5 @@
 resource "aws_lb" "default" {
-  name            = "example-lb"
+  name            = "visi-pro-lb"
   subnets         =  "aws_subnet.public.04ed3aeb3e95cdd42"
   security_groups = "aws_security_group.lb.sg-0cfcad0bc79947e74"
 }
