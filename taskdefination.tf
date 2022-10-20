@@ -33,7 +33,7 @@ resource "aws_security_group" "hello_world_task" {
     protocol        = "tcp"
     from_port       = 3000
     to_port         = 3000
-    security_groups = "[aws_security_group.lb.id]"
+    security_groups = "aws_security_group.lb.id"
   }
 
   egress {
