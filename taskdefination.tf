@@ -1,6 +1,6 @@
 
-resource "aws_ecs_task_definition" "hello_world" {
-  family                   = "hello-world-app"
+resource "aws_ecs_task_definition" "visi-pro" {
+  family                   = "visi-pro-app"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = 1024
@@ -9,10 +9,10 @@ resource "aws_ecs_task_definition" "hello_world" {
   container_definitions = <<DEFINITION
 [
   {
-    "image": "heroku/nodejs-hello-world",
+    "image": "heroku/nodejs-visi-pro",
     "cpu": 1024,
     "memory": 2048,
-    "name": "hello-world-app",
+    "name": "visi-pro-app",
     "networkMode": "awsvpc",
     "portMappings": [
       {
@@ -25,7 +25,7 @@ resource "aws_ecs_task_definition" "hello_world" {
 DEFINITION
 }
 
-resource "aws_security_group" "hello_world_task" {
+resource "aws_security_group" "visi-pro_task" {
   name        = "visi-pro-task-security-group"
   vpc_id      = "vpc-0e4ba9e87082d56aa"
 
