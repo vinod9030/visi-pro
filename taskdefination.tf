@@ -26,21 +26,21 @@ DEFINITION
 }
 
 resource "aws_security_group" "hello_world_task" {
-  name        = "example-task-security-group"
-  vpc_id      = "aws_vpc.default.id"
+  name        = "visi-pro-task-security-group"
+  vpc_id      = "vpc-0e4ba9e87082d56aa"
 
   ingress {
     protocol        = "tcp"
     from_port       = 3000
     to_port         = 3000
-    security_groups = "aws_security_group.lb.id"
+    security_groups = "sg-0cfcad0bc79947e74"
   }
 
   egress {
     protocol    = "-1"
     from_port   = 0
     to_port     = 0
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["10.0.0.0/16"]
   }
 }
 
