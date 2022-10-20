@@ -1,5 +1,3 @@
-# outputs you can kist required endpoints, ip or instanceid's
-
-output "alb_hostname" {
-  value = aws_alb.alb.dns_visi-pro
+output "load_balancer_ip" {
+  value = aws_lb.default.dns_name
 }
