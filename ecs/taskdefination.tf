@@ -1,43 +1,46 @@
-# security group creation and attcahing in ecs, alb etc
 
-# ALB Security Group: Edit to restrict access to the application
-resource "aws_security_group" "visi-pro" {
-  name        = "visi-proapp-load-balancer-security-group"
-  description = "controls access to the ALB"
-  vpc_id      = "aws_vpc.visi-pro-vpc.vpc-0382f51c959645e99"
+resource "aws_ecs_task_definition" "hello_world" {
+  family                   = "hello-world-app"
+  network_mode             = "awsvpc"
+  requires_compatibilities = ["FARGATE"]
+  cpu                      = 1024
+  memory                   = 2048
 
-  ingress {
-    protocol    = "tcp"
-    from_port   = "var.app_port"
-    to_port     = "var.app_port"
-    cidr_blocks = ["172.31.0.0/16"]
+  container_definitions = <<DEFINITION
+[
+  {
+    "image": "heroku/nodejs-hello-world",
+    "cpu": 1024,
+    "memory": 2048,
+    "name": "hello-world-app",
+    "networkMode": "awsvpc",
+    "portMappings": [
+      {
+        "containerPort": 3000,
+        "hostPort": 3000
+      }
+    ]
   }
-
-  egress {
-    protocol    = "-1"
-    from_port   = 0
-    to_port     = 0
-    cidr_blocks = ["172.31.0.0/16"]
-  }
+]
+DEFINITION
 }
 
-# this security group for ecs - Traffic to the ECS cluster should only come from the ALB
-resource "aws_security_group" "visi-pro" {
-  name        = "visi-proapp-ecs-tasks-security-group"
-  description = "allow inbound access from the ALB only"
-  vpc_id      ="aws_vpc.visi-pro-vpc.vpc-0382f51c959645e99"
+resource "aws_security_group" "hello_world_task" {
+  name        = "example-task-security-group"
+  vpc_id      = aws_vpc.default.id
 
   ingress {
     protocol        = "tcp"
-    from_port       = "var.app_port"
-    to_port         = "var.app_port"
-    security_groups = "[aws_security_group.alb-sg.sg-0551d0f7731151aa3]"
+    from_port       = 3000
+    to_port         = 3000
+    security_groups = [aws_security_group.lb.id]
   }
 
   egress {
     protocol    = "-1"
     from_port   = 0
     to_port     = 0
-    cidr_blocks = ["172.31.0.0/16"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
