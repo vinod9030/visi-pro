@@ -27,13 +27,13 @@ DEFINITION
 
 resource "aws_security_group" "hello_world_task" {
   name        = "example-task-security-group"
-  vpc_id      = aws_vpc.default.id
+  vpc_id      = "aws_vpc.default.id"
 
   ingress {
     protocol        = "tcp"
     from_port       = 3000
     to_port         = 3000
-    security_groups = [aws_security_group.lb.id]
+    security_groups = "[aws_security_group.lb.id]"
   }
 
   egress {
