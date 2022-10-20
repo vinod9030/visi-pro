@@ -1,4 +1,4 @@
-resource "aws_lb" "default" {
+resource "aws_lb" "visi-pro" {
   name            = "visi-pro-lb"
   subnets         = "subnet-04ed3aeb3e95cdd42"
   security_groups = "sg-0cfcad0bc79947e74"
@@ -6,7 +6,7 @@ resource "aws_lb" "default" {
 
 
 
-resource "aws_lb_target_group" "hello_world" {
+resource "aws_lb_target_group" "visi-pro" {
   name        = "example-target-group"
   port        = 80
   protocol    = "HTTP"
@@ -16,8 +16,8 @@ resource "aws_lb_target_group" "hello_world" {
 
 
 
-resource "aws_lb_listener" "hello_world" {
-  load_balancer_arn = "arn:aws:elasticloadbalancing:us-east-1:214712740451:loadbalancer/app/visi-pro/d3b1a8885700f386"
+resource "aws_lb_listener" "visi-pro" {
+  load_balancer_arn = "arn:aws:elasticloadbalancing:us-east-1:214712740451:listener/app/visi-pro/d3b1a8885700f386/ab95cd43c2a82f2f"
   port              = "80"
   protocol          = "HTTP"
 
