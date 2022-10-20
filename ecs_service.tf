@@ -16,5 +16,5 @@ resource "aws_ecs_service" "visi-pro" {
     container_port   = 3000
   }
 
-  depends_on = "visi-pro"
+  #depends_on = "[aws_lb_listener.visi-pro]"
 }
